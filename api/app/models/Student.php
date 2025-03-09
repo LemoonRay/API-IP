@@ -6,10 +6,16 @@ class Student {
         $this->conn = $db;
     }
 
+    public function addStudent($name, $midterm_score, $final_score) {
+        $stmt = $this->conn->prepare("INSERT INTO students (name, midterm_score, final_score) VALUES (?, ?, ?)");
+        $stmt->bind_param("sdd", $name, $midterm_score, $final_score);
+        return $stmt->execute();
+    }
+
     public function getAllStudents() {
         $sql = "SELECT id, name, midterm_score, final_score, final_grade, status FROM students";
         $result = $this->conn->query($sql);
-
+        
         $students = [];
         while ($row = $result->fetch_assoc()) {
             $students[] = $row;
@@ -22,14 +28,7 @@ class Student {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-
         return $result->fetch_assoc();
-    }
-
-    public function addStudent($name, $midterm_score, $final_score) {
-        $stmt = $this->conn->prepare("INSERT INTO students (name, midterm_score, final_score) VALUES (?, ?, ?)");
-        $stmt->bind_param("sdd", $name, $midterm_score, $final_score);
-        return $stmt->execute();
     }
 
     public function updateStudent($id, $midterm_score, $final_score) {
