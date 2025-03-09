@@ -15,7 +15,7 @@ class Database {
     public $conn;
 
     public function __construct() {
-        // Load values from .env file
+        // Load .env file values
         $this->host = $_ENV['DB_HOST'];
         $this->user = $_ENV['DB_USER'];
         $this->password = $_ENV['DB_PASSWORD'];
