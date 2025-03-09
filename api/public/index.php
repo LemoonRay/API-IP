@@ -6,7 +6,7 @@ $database = new Database();
 $db = $database->connect();
 $controller = new StudentController($db);
 
-// Routing Logic
+//Routing
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $action = $_GET['action'] ?? null;
 
@@ -47,7 +47,7 @@ try {
     error_log("Error: " . $e->getMessage());
 }
 
-// Log debugging information
+//Log debugging
 error_log("Request Method: " . $requestMethod);
 error_log("Action: " . $action);
 error_log("Data: " . file_get_contents("php://input"));
