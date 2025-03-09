@@ -9,20 +9,6 @@ class StudentController {
         $this->model = new Student($db);
     }
 
-    public function getAllStudents() {
-        $students = $this->model->getAllStudents();
-        Response::json($students);
-    }
-
-    public function getStudentById($id) {
-        $student = $this->model->getStudentById($id);
-        if ($student) {
-            Response::json($student);
-        } else {
-            Response::json(["message" => "Student not found."], 404);
-        }
-    }
-
     public function addStudent($data) {
         if (isset($data['name'], $data['midterm_score'], $data['final_score'])) {
             $this->model->addStudent($data['name'], $data['midterm_score'], $data['final_score']);
@@ -44,6 +30,20 @@ class StudentController {
     public function deleteStudent($id) {
         $this->model->deleteStudent($id);
         Response::json(["message" => "Student deleted successfully."]);
+    }
+
+    public function getAllStudents() {
+        $students = $this->model->getAllStudents();
+        Response::json($students);
+    }
+
+    public function getStudentById($id) {
+        $student = $this->model->getStudentById($id);
+        if ($student) {
+            Response::json($student);
+        } else {
+            Response::json(["message" => "Student not found."], 404);
+        }
     }
 }
 ?>
