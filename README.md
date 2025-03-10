@@ -1,3 +1,5 @@
+CREATE DATABASE student_db;
+
 TABLE CREATION
 
 CREATE TABLE students ( 
